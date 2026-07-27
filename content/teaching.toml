@@ -1,10 +1,24 @@
 type = "card"
-title = "Teaching"
-description = "Courses I have taught or assisted with."
+title = "Projects"
+description = "Open-source research projects in computational pathology."
 
 [[items]]
-title = "Example Course"
-subtitle = "Teaching Assistant"
-date = "2024"
-content = "Description of the course and responsibilities. Content of this course can be found [here](https://example.com)."
-tags = ["Undergraduate", "CS"]
+title = "Cellflow"
+subtitle = "Pathological image augmentation"
+date = "2026"
+content = "A temporal-aware generative framework for pathological image augmentation. [Code](https://github.com/Rowerliu/Cellflow)"
+tags = ["Generative AI", "Computational Pathology"]
+
+[[items]]
+title = "StainExpert"
+subtitle = "Multi-target virtual staining"
+date = "2025"
+content = "A unified multi-expert diffusion framework for multi-target pathological stain translation. [Project page](https://rowerliu.github.io/StainExpert/)"
+tags = ["Diffusion Models", "Virtual Staining"]
+
+[[items]]
+title = "STAR"
+subtitle = "Whole-slide image registration"
+date = "2025"
+content = "A fast, robust, and lightweight framework for rigid registration of serial histopathological WSIs. [Code](https://github.com/Rowerliu/STAR)"
+tags = ["WSI", "Registration"]

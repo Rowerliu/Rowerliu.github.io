@@ -1,26 +1,14 @@
-## Education
+## Research Focus
 
-**The University of Example**, PhD in Natural Science, *2025 - Present*
-- Research focus: Mathematical Principles of Natural Philosophy
-- Supervisor: Prof. Advisor One and Dr. Advisor Two
+- Computational pathology and digital pathology workflows
+- Virtual staining and stain translation
+- Generative models for pathological image augmentation
+- Whole-slide image registration and analysis
 
-**The University of Example**, BSc in Natural Science, *2021 - 2025*
-- Graduated with First Class Honours
+## Selected Open-source Projects
 
-## Experience
+- **[Cellflow](https://github.com/Rowerliu/Cellflow):** temporal-aware pathological image augmentation.
+- **[StainExpert](https://github.com/Rowerliu/StainExpert):** multi-expert diffusion for multi-target virtual staining.
+- **[STAR](https://github.com/Rowerliu/STAR):** robust rigid registration for serial whole-slide images.
 
-**Example Role**
-Company/Institution
-*2023 - 2024*
-- Description of key responsibilities and achievements.
-- Utilized skills to solve problems.
-
-## Skills
-
-- **Programming:** Python, C++, MATLAB, LaTeX
-- **Data Analysis:** Pandas, NumPy, SciPy
-- **Languages:** English (Native), French (Fluent)
-
-## Awards & Honors
-
-- **First Prize in Example Competition** - Committee of Example (*2024*)
+For the most current project list and code, please see [github.com/Rowerliu](https://github.com/Rowerliu).

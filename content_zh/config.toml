@@ -1,22 +1,15 @@
 [site]
-title = "刘嘉乐"
-description = "某某大学博士生个人主页。"
-last_updated = "2025年11月18日"
+title = "刘泽宇"
+description = "刘泽宇的个人学术主页，研究方向为计算病理学与医学图像分析。"
+last_updated = "2026 年 7 月"
 
 [author]
-name = "刘嘉乐"
-title = "博士生"
-institution = "某某大学"
-
-[social]
-location = "城市，国家"
-location_details = [
-  "理科楼 123 室，",
-  "大学路，城市，国家"
-]
+name = "刘泽宇"
+title = "计算病理学研究者"
+institution = "北京航空航天大学"
 
 [[navigation]]
-title = "关于我"
+title = "关于"
 type = "page"
 target = "about"
 href = "/"
@@ -28,25 +21,13 @@ target = "publications"
 href = "/publications"
 
 [[navigation]]
-title = "教学"
+title = "项目"
 type = "page"
 target = "teaching"
 href = "/teaching"
 
 [[navigation]]
-title = "奖项"
-type = "page"
-target = "awards"
-href = "/awards"
-
-[[navigation]]
-title = "服务"
-type = "page"
-target = "services"
-href = "/services"
-
-[[navigation]]
-title = "简历"
+title = "简介"
 type = "page"
 target = "cv"
 href = "/cv"

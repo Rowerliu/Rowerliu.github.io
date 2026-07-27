@@ -1,27 +1,9 @@
 type = "card"
-title = "Awards"
-description = "Honors and awards I have received."
+title = "Research"
+description = "Selected research directions and contributions."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2025"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2024"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2023"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2022"
-content = "Description of the award."
+title = "Digital pathology AI"
+subtitle = "Reproducible tools and models"
+date = "Ongoing"
+content = "Developing practical methods for pathological image generation, stain translation, and whole-slide image analysis."

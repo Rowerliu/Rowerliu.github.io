@@ -1,18 +1,14 @@
 type = "about"
-title = "关于我"
+title = "关于"
 
 [profile]
-research_interests = [
-  "计算物理",
-  "数学原理",
-  "定理证明"
-]
+research_interests = ["计算病理学", "虚拟染色", "医学图像生成", "全切片图像分析"]
 
 [[sections]]
 id = "about"
 type = "markdown"
 source = "bio.md"
-title = "关于我"
+title = "关于"
 
 [[sections]]
 id = "featured_publications"

@@ -1,5 +1,5 @@
-I am a PhD student at the School of Science, University of Example, advised by [Prof. Advisor One](https://example.com) and [Dr. Advisor Two](https://example.com).
+I am **Zeyu Liu**, a researcher interested in computational pathology and medical image analysis. My research focuses on building practical, reproducible AI systems for digital pathology, including virtual staining, pathological image generation, and whole-slide image (WSI) registration.
 
-Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.
+I develop open-source tools and models that help turn complex pathology workflows into scalable research pipelines. Recent work includes **StainExpert**, a multi-expert diffusion framework for multi-target pathological stain translation; **Cellflow**, a temporal-aware generative framework for pathological image augmentation; and **STAR**, a lightweight framework for serial WSI registration.
 
-My current research focuses on investigating the mathematical principles of natural philosophy.
+Please visit my [GitHub profile](https://github.com/Rowerliu) for code, project resources, and updates.

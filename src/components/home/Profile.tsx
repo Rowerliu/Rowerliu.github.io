@@ -49,7 +49,7 @@ export default function Profile({ author, social, features, researchInterests }:
     useEffect(() => {
         if (!features.enable_likes) return;
 
-        const userHasLiked = localStorage.getItem('jiale-website-user-liked');
+        const userHasLiked = localStorage.getItem('zeyu-website-user-liked');
         if (userHasLiked === 'true') {
             setHasLiked(true);
         }
@@ -60,11 +60,11 @@ export default function Profile({ author, social, features, researchInterests }:
         setHasLiked(newLikedState);
 
         if (newLikedState) {
-            localStorage.setItem('jiale-website-user-liked', 'true');
+            localStorage.setItem('zeyu-website-user-liked', 'true');
             setShowThanks(true);
             setTimeout(() => setShowThanks(false), 2000);
         } else {
-            localStorage.removeItem('jiale-website-user-liked');
+            localStorage.removeItem('zeyu-website-user-liked');
             setShowThanks(false);
         }
     };
@@ -112,15 +112,21 @@ export default function Profile({ author, social, features, researchInterests }:
             className="sticky top-8"
         >
             {/* Profile Image */}
-            <div className="w-64 h-64 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105">
-                <Image
-                    src={author.avatar}
-                    alt={author.name}
-                    width={256}
-                    height={256}
-                    className="w-full h-full object-cover object-[32%_center]"
-                    priority
-                />
+            <div className="w-64 h-64 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 bg-accent/10 flex items-center justify-center">
+                {author.avatar ? (
+                    <Image
+                        src={author.avatar}
+                        alt={author.name}
+                        width={256}
+                        height={256}
+                        className="w-full h-full object-cover object-[32%_center]"
+                        priority
+                    />
+                ) : (
+                    <span className="text-6xl font-serif font-bold text-accent" aria-label={author.name}>
+                        {author.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 2)}
+                    </span>
+                )}
             </div>
 
             {/* Name and Title */}

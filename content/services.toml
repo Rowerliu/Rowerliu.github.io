@@ -1,9 +1,9 @@
 type = "card"
-title = "Services"
-description = "Professional services and community involvement."
+title = "Open Source"
+description = "Research software and project resources."
 
 [[items]]
-title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+title = "GitHub"
+subtitle = "Rowerliu"
+date = "Ongoing"
+content = "Open-source code and project updates are available at [github.com/Rowerliu](https://github.com/Rowerliu)."

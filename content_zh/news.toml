@@ -1,7 +1,11 @@
 [[news]]
-date = "2025-11"
-content = "我们的工作被顶级期刊接收了 🎉"
+date = "2026-05"
+content = "Cellflow: Advancing pathological image augmentation from spatial views to temporal trajectories 发表在 Medical Image Analysis。"
+
+[[news]]
+date = "2025-12"
+content = "StainExpert: A Unified Multi-Expert Diffusion Framework for Multi-Target Pathological Stain Translation 发表在 IEEE Transactions on Medical Imaging。"
 
 [[news]]
 date = "2025-09"
-content = "在某某大学开始博士学习"
+content = "面向串行全切片图像配准的开源框架 STAR 发布于 arXiv。"
