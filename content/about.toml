@@ -3,10 +3,10 @@ title = "About"
 
 [profile]
 research_interests = [
-  "Computational Pathology",
-  "Virtual Staining",
-  "Medical Image Generation",
-  "Whole-slide Image Analysis"
+  "Artificial Intelligence / Deep Learning",
+  "Generative Model / MultiModality",
+  "Medical Image Analyis / Computational Pathology",
+  "Virtual Staining / Report Generation / Human-AI Collaboration"
 ]
 
 [[sections]]
