@@ -1,7 +1,7 @@
 [site]
 title = "Zeyu Liu"
 description = "Personal academic homepage of Zeyu Liu, focusing on Artificial Intelligence, Computational Pathology and Medical Image Analysis."
-favicon = "/favicon.svg"
+favicon = "/favicon.svg?v=20260728"
 last_updated = "July 2026"
 
 [author]
