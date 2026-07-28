@@ -6,7 +6,7 @@ last_updated = "July 2026"
 
 [author]
 name = "Zeyu Liu"
-title = "Researcher in Computational Pathology"
+title = "Postdoctral Research Fellow"
 institution = "National University of Singapore"
 avatar = "/avatar.png"
 
@@ -55,7 +55,7 @@ target = "teaching"
 href = "/teaching"
 
 [[navigation]]
-title = "CV"
+title = "Services"
 type = "page"
-target = "cv"
+target = "services"
 href = "/cv"

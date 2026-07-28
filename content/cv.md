@@ -1,14 +1,15 @@
 ## Research Focus
 
-- Computational pathology and digital pathology workflows
-- Virtual staining and stain translation
-- Generative models for pathological image augmentation
-- Whole-slide image registration and analysis
+- Artificial Intelligence / Deep Learning
+- Generative Models / Large Vision-Language Models
+- Medical Image Analyis
+- Computational pathology
+- Virtual Staining / Report Generation / Human-Computer Collaboration
 
 ## Selected Open-source Projects
 
 - **[Cellflow](https://github.com/Rowerliu/Cellflow):** temporal-aware pathological image augmentation.
 - **[StainExpert](https://github.com/Rowerliu/StainExpert):** multi-expert diffusion for multi-target virtual staining.
-- **[STAR](https://github.com/Rowerliu/STAR):** robust rigid registration for serial whole-slide images.
+- **[PASS](https://github.com/sagizty/MIL-SI):** rethinking pathology image analysis through shuffling.
 
 For the most current project list and code, please see [github.com/Rowerliu](https://github.com/Rowerliu).

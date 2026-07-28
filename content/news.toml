@@ -1,11 +1,11 @@
 [[news]]
+date = "2026-08"
+content = "PASS (Rethinking Pathology Image Analysis through Shuffling) was published in npj Biomedical Innovations."
+
+[[news]]
 date = "2026-05"
 content = "Cellflow: Advancing pathological image augmentation from spatial views to temporal trajectories was published in Medical Image Analysis."
 
 [[news]]
 date = "2025-12"
 content = "StainExpert: A Unified Multi-Expert Diffusion Framework for Multi-Target Pathological Stain Translation was published in IEEE Transactions on Medical Imaging."
-
-[[news]]
-date = "2025-09"
-content = "STAR, an open-source framework for serial whole-slide image registration, was released on arXiv."
