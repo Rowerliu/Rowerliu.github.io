@@ -1,17 +1,23 @@
 [site]
 title = "Zeyu Liu"
-description = "Personal academic homepage of Zeyu Liu, focusing on computational pathology and medical image analysis."
+description = "Personal academic homepage of Zeyu Liu, focusing on Artificial Intelligence, Computational Pathology and Medical Image Analysis."
 favicon = "/favicon.svg"
 last_updated = "July 2026"
 
 [author]
 name = "Zeyu Liu"
 title = "Researcher in Computational Pathology"
-institution = "Beihang University"
-avatar = ""
+institution = "National University of Singapore"
+avatar = "public/avatar.png"
 
 [social]
+email = "zeyuliu@puzzlelogic.com"
+location = "Singapore"
+location_url = "https://www.google.com/maps/search/?api=1&query=Department+of+Biomedical+Engineering,+NUS"
+google_scholar = "https://scholar.google.com.hk/citations?hl=zh-CN&user=pOPN9kgAAAAJ&view_op=list_works&sortby=pubdate"
+orcid = "https://orcid.org/0000-0002-9342-1247"
 github = "https://github.com/Rowerliu"
+linkedin = "https://www.linkedin.com/in/zeyu-liu-aaa175333/"
 
 [features]
 enable_likes = false
