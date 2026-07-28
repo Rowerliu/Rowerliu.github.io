@@ -8,7 +8,7 @@ last_updated = "July 2026"
 name = "Zeyu Liu"
 title = "Researcher in Computational Pathology"
 institution = "National University of Singapore"
-avatar = "public/avatar.png"
+avatar = "/avatar.png"
 
 [social]
 email = "zeyuliu@puzzlelogic.com"
