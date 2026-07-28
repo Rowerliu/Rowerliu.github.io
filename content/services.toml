@@ -1,9 +1,17 @@
 type = "card"
-title = "Open Source"
-description = "Research software and project resources."
+title = "Services"
+description = "Academic reviewing and professional service."
 
 [[items]]
-title = "GitHub"
-subtitle = "Rowerliu"
+title = "Journal Reviewer"
+subtitle = "Scientific Reports; Biomedical Signal Processing and Control; Computer Methods and Programs in Biomedicine"
 date = "Ongoing"
-content = "Open-source code and project updates are available at [github.com/Rowerliu](https://github.com/Rowerliu)."
+content = "Reviewer for journals in medical imaging, biomedical engineering, and computational biology."
+tags = ["Peer Review", "Journals"]
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "MICCAI; IEEE BIBM"
+date = "Ongoing"
+content = "Reviewer for international conferences in medical image computing, bioinformatics, and biomedicine."
+tags = ["Peer Review", "Conferences"]

@@ -1,9 +1,17 @@
 type = "card"
 title = "学术服务"
-description = "专业服务与社区参与。"
+description = "学术审稿与专业服务。"
 
 [[items]]
-title = "审稿人"
-subtitle = "某期刊"
-date = "2024"
-content = "参与审阅论文。"
+title = "期刊审稿人"
+subtitle = "Scientific Reports；Biomedical Signal Processing and Control；Computer Methods and Programs in Biomedicine"
+date = "持续进行"
+content = "为医学图像、医学工程和计算生物学领域期刊提供同行评审服务。"
+tags = ["同行评审", "期刊"]
+
+[[items]]
+title = "会议审稿人"
+subtitle = "MICCAI；IEEE BIBM"
+date = "持续进行"
+content = "为医学图像计算、生物信息学和生物医学领域国际会议提供审稿服务。"
+tags = ["同行评审", "会议"]

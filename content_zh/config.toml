@@ -5,8 +5,8 @@ last_updated = "2026 年 7 月"
 
 [author]
 name = "刘泽宇"
-title = "计算病理学研究者"
-institution = "北京航空航天大学"
+title = "博士后研究员"
+institution = "新加坡国立大学"
 
 [[navigation]]
 title = "关于"
@@ -27,7 +27,7 @@ target = "teaching"
 href = "/teaching"
 
 [[navigation]]
-title = "简介"
+title = "学术服务"
 type = "page"
-target = "cv"
-href = "/cv"
+target = "services"
+href = "/services"
