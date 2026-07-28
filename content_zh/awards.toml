@@ -1,27 +1,9 @@
 type = "card"
-title = "奖项"
-description = "我获得的荣誉与奖项。"
+title = "研究"
+description = "代表性研究方向与贡献。"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2025"
-content = "奖项说明。"
-
-[[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2024"
-content = "奖项说明。"
-
-[[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2023"
-content = "奖项说明。"
-
-[[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2022"
-content = "奖项说明。"
+title = "数字病理人工智能"
+subtitle = "可复现的工具与模型"
+date = "持续进行"
+content = "开发面向病理图像生成、染色转换和全切片图像分析的实用方法。"

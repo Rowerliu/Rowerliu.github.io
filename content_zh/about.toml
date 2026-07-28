@@ -2,7 +2,12 @@ type = "about"
 title = "关于"
 
 [profile]
-research_interests = ["计算病理学", "虚拟染色", "医学图像生成", "全切片图像分析"]
+research_interests = [
+  "计算病理学",
+  "虚拟染色",
+  "医学图像生成",
+  "全切片图像分析"
+]
 
 [[sections]]
 id = "about"

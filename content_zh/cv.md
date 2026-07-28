@@ -1,14 +1,15 @@
 ## 研究方向
 
-- 计算病理学与数字病理工作流
-- 虚拟染色与病理染色转换
-- 面向病理图像增强的生成式模型
-- 全切片图像配准与分析
+- 人工智能与深度学习
+- 生成式模型与大型视觉语言模型
+- 医学图像分析
+- 计算病理学
+- 虚拟染色、报告生成与人机协作
 
-## 开源项目
+## 代表性开源项目
 
-- **[Cellflow](https://github.com/Rowerliu/Cellflow)：** 时序感知的病理图像增强框架。
-- **[StainExpert](https://github.com/Rowerliu/StainExpert)：** 多专家扩散驱动的多目标虚拟染色框架。
-- **[STAR](https://github.com/Rowerliu/STAR)：** 串行全切片图像的鲁棒刚性配准框架。
+- **[Cellflow](https://github.com/Rowerliu/Cellflow)：** 面向病理图像增强的时序感知生成框架。
+- **[StainExpert](https://github.com/Rowerliu/StainExpert)：** 面向多目标虚拟染色的多专家扩散框架。
+- **[PASS](https://github.com/sagizty/MIL-SI)：** 通过重排重新思考病理图像分析。
 
-最新代码与项目列表请访问 [github.com/Rowerliu](https://github.com/Rowerliu)。
+最新项目与代码请访问 [github.com/Rowerliu](https://github.com/Rowerliu)。

@@ -20,5 +20,5 @@ tags = ["扩散模型", "虚拟染色"]
 title = "STAR"
 subtitle = "全切片图像配准"
 date = "2025"
-content = "快速、鲁棒的串行病理全切片图像刚性配准框架。[代码](https://github.com/Rowerliu/STAR)"
+content = "快速、鲁棒且轻量的串行病理全切片图像刚性配准框架。[代码](https://github.com/Rowerliu/STAR)"
 tags = ["WSI", "图像配准"]
