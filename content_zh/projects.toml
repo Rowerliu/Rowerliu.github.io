@@ -1,0 +1,26 @@
+type = "card"
+title = "Projects"
+description = "Open-source research projects in computational pathology."
+
+[[items]]
+title = "StainExpert"
+subtitle = "Multi-target virtual staining"
+date = "2025"
+content = "A unified multi-expert diffusion framework for multi-target pathological stain translation.
+[Project page](https://rowerliu.github.io/StainExpert/)"
+tags = ["Diffusion Models", "Virtual Staining"]
+
+[[items]]
+title = "Cellflow"
+subtitle = "Pathological image augmentation"
+date = "2026"
+content = "A temporal-aware generative framework for pathological image augmentation. [Code](https://github.com/Rowerliu/Cellflow)"
+tags = ["Generative AI", "Computational Pathology"]
+
+[[items]]
+title = "PASS"
+subtitle = "Pathoentity Shuffling Paradigm"
+date = "2026"
+content = "A plug-and-play data augmentation tool for pathology image analysis.
+[Code](https://github.com/Rowerliu/STAR)"
+tags = ["Pathoentity", "Shuffling"]
