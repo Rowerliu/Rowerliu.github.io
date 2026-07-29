@@ -108,16 +108,16 @@ export default function Profile({ author, social, features }: ProfileProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="sticky top-8"
+            className=""
         >
             {/* Profile Image */}
-            <div className="w-52 h-52 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 bg-accent/10 flex items-center justify-center">
+            <div className="w-64 h-64 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 bg-accent/10 flex items-center justify-center">
                 {author.avatar ? (
                     <Image
                         src={author.avatar}
                         alt={author.name}
-                        width={208}
-                        height={208}
+                        width={256}
+                        height={256}
                         className="w-full h-full object-cover object-[32%_center]"
                         priority
                     />

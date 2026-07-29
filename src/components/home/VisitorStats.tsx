@@ -33,29 +33,29 @@ export default function VisitorStats() {
   }, []);
 
   return (
-    <section className="mt-6" aria-labelledby="visitor-stats-title">
-      <h2 id="visitor-stats-title" className="border-l-4 border-accent pl-3 text-lg font-semibold text-primary">
+    <section aria-labelledby="visitor-stats-title">
+      <h2 id="visitor-stats-title" className="border-l-4 border-accent pl-2 text-base font-semibold text-primary">
         {copy.title}
       </h2>
 
-      <div className="mt-3">
-        <div className="rounded-xl border border-neutral-200 bg-white p-3 text-center dark:border-neutral-700 dark:bg-neutral-800">
+      <div className="mt-2">
+        <div className="rounded-lg border border-neutral-200 bg-white p-2 text-center dark:border-neutral-700 dark:bg-neutral-800">
           <iframe
             title={copy.count}
             src={`${GOATCOUNTER_URL}/counter/TOTAL.html?no_branding=1`}
-            className="h-12 w-full border-0"
+            className="h-10 w-full border-0"
             loading="lazy"
           />
-          <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">{copy.count}</p>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">{copy.count}</p>
         </div>
       </div>
 
-      <details className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
-        <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-primary marker:text-accent">
+      <details className="mt-2 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
+        <summary className="cursor-pointer px-3 py-2 text-xs font-medium text-primary marker:text-accent">
           {copy.map}
         </summary>
-        <div className="border-t border-neutral-200 p-2 dark:border-neutral-700">
-          <div ref={mapContainerRef} className="min-h-[250px] overflow-hidden rounded-lg" />
+        <div className="border-t border-neutral-200 p-1.5 dark:border-neutral-700">
+          <div ref={mapContainerRef} className="min-h-[200px] overflow-hidden rounded-md" />
         </div>
       </details>
     </section>
