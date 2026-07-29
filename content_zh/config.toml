@@ -23,8 +23,8 @@ href = "/publications"
 [[navigation]]
 title = "项目"
 type = "page"
-target = "teaching"
-href = "/teaching"
+target = "projects"
+href = "/projects"
 
 [[navigation]]
 title = "学术服务"
