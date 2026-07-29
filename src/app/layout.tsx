@@ -134,7 +134,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
         <Script
-          data-goatcounter="https://rowerliu.goatcounter.com"
+          data-goatcounter="https://rowerliu.goatcounter.com/count"
           src="https://gc.zgo.at/count.js"
           strategy="afterInteractive"
         />
