@@ -33,13 +33,13 @@ export default function VisitorStats() {
   }, []);
 
   return (
-    <section aria-labelledby="visitor-stats-title">
+    <section className="mx-auto w-full max-w-56" aria-labelledby="visitor-stats-title">
       <h2 id="visitor-stats-title" className="border-l-4 border-accent pl-2 text-base font-semibold text-primary">
         {copy.title}
       </h2>
 
       <div className="mt-2">
-        <div className="rounded-lg border border-neutral-200 bg-white p-2 text-center dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="rounded-lg border border-neutral-200 bg-white px-2 py-1.5 text-center dark:border-neutral-700 dark:bg-neutral-800">
           <iframe
             title={copy.count}
             src={`${GOATCOUNTER_URL}/counter/TOTAL.html?no_branding=1`}
@@ -55,7 +55,7 @@ export default function VisitorStats() {
           {copy.map}
         </summary>
         <div className="border-t border-neutral-200 p-1.5 dark:border-neutral-700">
-          <div ref={mapContainerRef} className="min-h-[200px] overflow-hidden rounded-md" />
+          <div ref={mapContainerRef} className="min-h-[150px] overflow-hidden rounded-md" />
         </div>
       </details>
     </section>

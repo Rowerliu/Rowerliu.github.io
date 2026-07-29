@@ -87,18 +87,21 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                     return (
                       <div key={section.id} className="space-y-8">
                         {data.researchInterests && data.researchInterests.length > 0 && (
-                          <div className="rounded-lg bg-neutral-100 p-5 dark:bg-neutral-800">
-                            <h3 className="mb-3 text-xl font-serif font-bold text-primary">
+                          <section>
+                            <h2 className="mb-4 text-2xl font-serif font-bold text-primary">
                               {messages.profile.researchInterests}
-                            </h3>
-                            <div className="grid gap-2 text-sm text-neutral-700 dark:text-neutral-400 sm:grid-cols-2">
+                            </h2>
+                            <div className="grid gap-4 sm:grid-cols-2">
                               {data.researchInterests.map((interest) => (
-                                <div key={interest} className="rounded-md bg-white/60 px-3 py-2 dark:bg-neutral-700/40">
+                                <div
+                                  key={interest}
+                                  className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg dark:border-[rgba(148,163,184,0.24)] dark:bg-neutral-800 dark:text-neutral-400"
+                                >
                                   {interest}
                                 </div>
                               ))}
                             </div>
-                          </div>
+                          </section>
                         )}
                         <SelectedPublications
                           publications={section.publications || []}
