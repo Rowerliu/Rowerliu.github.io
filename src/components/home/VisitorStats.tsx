@@ -29,7 +29,7 @@ export default function VisitorStats() {
       }
     : {
         title: 'Visitors',
-        count: 'Total page views',
+        count: 'Total page view',
         map: 'Global visitor map',
       };
 
@@ -58,9 +58,26 @@ export default function VisitorStats() {
           path: 'TOTAL',
           no_branding: true,
           style: `
-            div { border: 0; background: transparent; color: inherit; padding: 0; font: inherit; }
+            div {
+              width: auto;
+              height: auto;
+              overflow: visible;
+              border: 0;
+              background: transparent;
+              color: inherit;
+              padding: 0;
+              font-family: var(--font-sans);
+              line-height: 1;
+            }
             #gcvc-for, #gcvc-by { display: none; }
-            #gcvc-views { color: #d4a562; font-size: 1.75rem; font-weight: 700; line-height: 1; }
+            #gcvc-views {
+              display: block;
+              color: var(--accent);
+              font-family: var(--font-serif);
+              font-size: var(--font-size-2xl);
+              font-weight: 700;
+              line-height: var(--line-height-none);
+            }
           `,
         });
         return true;

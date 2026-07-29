@@ -150,44 +150,45 @@ function getHighlightNames(locale?: string): string[] {
   return Array.from(names);
 }
 
-function normalizePersonNameForMatch(name: string): string {
-  return name.toLowerCase().replace(/[\s.,'’`"()\-_/]/g, '');
+interface PersonNameSignature {
+  normalized: string;
+  givenName: string;
+  familyName: string;
 }
 
-function buildNameVariants(name: string): Set<string> {
-  const variants = new Set<string>();
-  const cleaned = cleanBibTeXString(name).toLowerCase().trim();
+function getPersonNameSignature(name: string): PersonNameSignature | undefined {
+  const parts = cleanBibTeXString(name)
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .match(/[\p{L}\p{N}]+/gu);
 
-  if (!cleaned) {
-    return variants;
-  }
+  if (!parts?.length) return undefined;
 
-  variants.add(cleaned);
+  return {
+    normalized: parts.join(''),
+    givenName: parts[0],
+    familyName: parts[parts.length - 1],
+  };
+}
 
-  const parts = cleaned.split(/\s+/).filter(Boolean);
-  if (parts.length === 2) {
-    variants.add(`${parts[1]} ${parts[0]}`);
-  }
+function isSamePersonName(authorName: string, ownerName: string): boolean {
+  const author = getPersonNameSignature(authorName);
+  const owner = getPersonNameSignature(ownerName);
 
-  return variants;
+  if (!author || !owner) return false;
+  if (author.normalized === owner.normalized) return true;
+  if (author.familyName !== owner.familyName) return false;
+
+  // Supports abbreviated BibTeX names such as "Z. Liu" while avoiding a
+  // match between two different fully written given names with the same initial.
+  return author.givenName === owner.givenName ||
+    (author.givenName.length === 1 && owner.givenName.startsWith(author.givenName)) ||
+    (owner.givenName.length === 1 && author.givenName.startsWith(owner.givenName));
 }
 
 function parseAuthors(authorsStr: string, highlightNames: string[]): Array<{ name: string; isHighlighted?: boolean; isCorresponding?: boolean; isCoAuthor?: boolean }> {
   if (!authorsStr) return [];
-
-  const highlightTextCandidates = new Set<string>();
-  const highlightNormalizedCandidates = new Set<string>();
-
-  highlightNames.forEach((name) => {
-    const variants = buildNameVariants(name);
-    variants.forEach((variant) => {
-      highlightTextCandidates.add(variant);
-      highlightNormalizedCandidates.add(normalizePersonNameForMatch(variant));
-    });
-  });
-
-  const highlightTextList = Array.from(highlightTextCandidates);
-  const highlightNormalizedList = Array.from(highlightNormalizedCandidates);
 
   // Split by "and" and clean up
   return authorsStr
@@ -214,11 +215,7 @@ function parseAuthors(authorsStr: string, highlightNames: string[]): Array<{ nam
       name = cleanBibTeXString(name);
 
       // Check if this is the site owner (to highlight)
-      const lowerName = name.toLowerCase();
-      const normalizedName = normalizePersonNameForMatch(lowerName);
-      const isHighlighted =
-        highlightTextList.some((candidate) => lowerName.includes(candidate)) ||
-        highlightNormalizedList.some((candidate) => normalizedName.includes(candidate));
+      const isHighlighted = highlightNames.some((ownerName) => isSamePersonName(name, ownerName));
 
       return {
         name,
