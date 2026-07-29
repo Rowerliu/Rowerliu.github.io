@@ -1,27 +1,36 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
 const GOATCOUNTER_URL = 'https://rowerliu.goatcounter.com';
 
 export default function VisitorStats() {
   const locale = useLocaleStore((state) => state.locale);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const isChinese = locale.startsWith('zh');
   const copy = isChinese
     ? {
         title: '访客',
         count: '全站访问量',
-        viewStats: '查看统计',
-        provider: 'GoatCounter',
-        map: '访客分布与完整统计',
+        map: '全球访客地图',
       }
     : {
         title: 'Visitors',
         count: 'Total page views',
-        viewStats: 'View stats',
-        provider: 'GoatCounter',
-        map: 'Visitor locations and full statistics',
+        map: 'Global visitor map',
       };
+
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container || document.getElementById('mmvst_globe')) return;
+
+    const script = document.createElement('script');
+    script.id = 'mmvst_globe';
+    script.type = 'text/javascript';
+    script.src = 'https://mapmyvisitors.com/globe.js?d=XCrzZ4GDJC3bc1IQSsqp_NByILLgLw0-lrOiQsLCcwI';
+    container.appendChild(script);
+  }, []);
 
   return (
     <section className="mt-6" aria-labelledby="visitor-stats-title">
@@ -29,7 +38,7 @@ export default function VisitorStats() {
         {copy.title}
       </h2>
 
-      <div className="mt-3 grid grid-cols-2 gap-3">
+      <div className="mt-3">
         <div className="rounded-xl border border-neutral-200 bg-white p-3 text-center dark:border-neutral-700 dark:bg-neutral-800">
           <iframe
             title={copy.count}
@@ -39,16 +48,6 @@ export default function VisitorStats() {
           />
           <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">{copy.count}</p>
         </div>
-
-        <a
-          href={GOATCOUNTER_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="flex flex-col items-center justify-center rounded-xl border border-neutral-200 bg-white p-3 text-center transition-colors hover:border-accent hover:bg-accent/5 dark:border-neutral-700 dark:bg-neutral-800"
-        >
-          <span className="text-base font-semibold text-accent">{copy.viewStats}</span>
-          <span className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">{copy.provider}</span>
-        </a>
       </div>
 
       <details className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
@@ -56,13 +55,7 @@ export default function VisitorStats() {
           {copy.map}
         </summary>
         <div className="border-t border-neutral-200 p-2 dark:border-neutral-700">
-          <iframe
-            title={copy.map}
-            src={`${GOATCOUNTER_URL}?hideui=1`}
-            className="h-[430px] w-full rounded-lg border-0"
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+          <div ref={mapContainerRef} className="min-h-[250px] overflow-hidden rounded-lg" />
         </div>
       </details>
     </section>
