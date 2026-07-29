@@ -18,7 +18,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
 
     return (
         <motion.section
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
         >
@@ -36,7 +36,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                 {publications.map((pub, index) => (
                     <motion.div
                         key={pub.id}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
                         className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"

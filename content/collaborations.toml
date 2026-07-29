@@ -1,0 +1,17 @@
+type = "card"
+title = "Collaborations"
+description = "Organizations and initiatives I collaborate with."
+
+[[items]]
+title = "PuzzleLogic"
+subtitle = "AI pathology solutions"
+content = "Developing practical AI solutions for digital pathology research, diagnosis, and clinical translation."
+link = "https://puzzlelogic.com/"
+tags = ["AI Pathology", "Digital Pathology"]
+
+[[items]]
+title = "Autodemia"
+subtitle = "Academic collaboration"
+content = "Supporting open academic exchange, research collaboration, and knowledge sharing."
+link = "https://autodemia.com/?lang=zh"
+tags = ["Research", "Academic Community"]

@@ -1,0 +1,17 @@
+type = "card"
+title = "合作"
+description = "参与合作的组织与学术项目。"
+
+[[items]]
+title = "PuzzleLogic"
+subtitle = "人工智能病理解决方案"
+content = "面向数字病理研究、诊断与临床转化，开发实用的人工智能解决方案。"
+link = "https://puzzlelogic.com/"
+tags = ["人工智能病理", "数字病理"]
+
+[[items]]
+title = "Autodemia"
+subtitle = "学术合作"
+content = "支持开放的学术交流、科研合作与知识分享。"
+link = "https://autodemia.com/?lang=zh"
+tags = ["科研合作", "学术社区"]

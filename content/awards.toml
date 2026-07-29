@@ -1,9 +1,9 @@
 type = "card"
-title = "Research"
-description = "Selected research directions and contributions."
+title = "Awards"
+description = "Selected honors and awards."
 
 [[items]]
-title = "Digital pathology AI"
-subtitle = "Reproducible tools and models"
-date = "Ongoing"
-content = "Developing practical methods for pathological image generation, stain translation, and whole-slide image analysis."
+title = "Lab on a Chip Poster Prize"
+subtitle = "Royal Society of Chemistry"
+date = "2021"
+content = "Awarded to Zeyu Liu at The 3rd China Forum on Biosensors, Biochips and Nanobiotechnology (BBN China 2021)."

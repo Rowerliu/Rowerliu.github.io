@@ -32,7 +32,7 @@ const markdownComponents = {
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
         >
@@ -51,13 +51,24 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                 {config.items.map((item, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
                         className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
                     >
                         <div className="flex justify-between items-start mb-2">
-                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
+                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>
+                                {item.link ? (
+                                    <a
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="transition-colors hover:text-accent"
+                                    >
+                                        {item.title} <span aria-hidden="true">↗</span>
+                                    </a>
+                                ) : item.title}
+                            </h3>
                             {item.date && (
                                 <span className="text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
                                     {item.date}

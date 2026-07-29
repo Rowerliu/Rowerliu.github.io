@@ -9,7 +9,7 @@ title = "博士后研究员"
 institution = "新加坡国立大学"
 
 [[navigation]]
-title = "关于"
+title = "主页"
 type = "page"
 target = "about"
 href = "/"
@@ -25,6 +25,18 @@ title = "项目"
 type = "page"
 target = "projects"
 href = "/projects"
+
+[[navigation]]
+title = "合作"
+type = "page"
+target = "collaborations"
+href = "/collaborations"
+
+[[navigation]]
+title = "获奖"
+type = "page"
+target = "awards"
+href = "/awards"
 
 [[navigation]]
 title = "学术服务"

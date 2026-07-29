@@ -37,7 +37,7 @@ zh = "中文"
 en = "English"
 
 [[navigation]]
-title = "About"
+title = "Home"
 type = "page"
 target = "about"
 href = "/"
@@ -53,6 +53,18 @@ title = "Projects"
 type = "page"
 target = "projects"
 href = "/projects"
+
+[[navigation]]
+title = "Collaborations"
+type = "page"
+target = "collaborations"
+href = "/collaborations"
+
+[[navigation]]
+title = "Awards"
+type = "page"
+target = "awards"
+href = "/awards"
 
 [[navigation]]
 title = "Services"

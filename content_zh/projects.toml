@@ -6,8 +6,7 @@ description = "开源项目"
 title = "StainExpert"
 subtitle = "Multi-target virtual staining"
 date = "2025"
-content = "A unified multi-expert diffusion framework for multi-target pathological stain translation.
-[Project page](https://rowerliu.github.io/StainExpert/)"
+content = "A unified multi-expert diffusion framework for multi-target pathological stain translation. [Project page](https://rowerliu.github.io/StainExpert/)"
 tags = ["Diffusion Models", "Virtual Staining"]
 
 [[items]]
@@ -21,6 +20,5 @@ tags = ["Generative AI", "Computational Pathology"]
 title = "PASS"
 subtitle = "Pathoentity Shuffling Paradigm"
 date = "2026"
-content = "A plug-and-play data augmentation tool for pathology image analysis.
-[Code](https://github.com/Rowerliu/STAR)"
+content = "A plug-and-play data augmentation tool for pathology image analysis. [Code](https://github.com/Rowerliu/STAR)"
 tags = ["Pathoentity", "Shuffling"]

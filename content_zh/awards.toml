@@ -1,9 +1,9 @@
 type = "card"
-title = "研究"
-description = "代表性研究方向与贡献。"
+title = "获奖"
+description = "代表性荣誉与奖励。"
 
 [[items]]
-title = "数字病理人工智能"
-subtitle = "可复现的工具与模型"
-date = "持续进行"
-content = "开发面向病理图像生成、染色转换和全切片图像分析的实用方法。"
+title = "Lab on a Chip 海报奖"
+subtitle = "英国皇家化学学会（Royal Society of Chemistry）"
+date = "2021"
+content = "刘泽宇在第三届中国生物传感器、生物芯片与纳米生物技术论坛（BBN China 2021）获颁 Lab on a Chip Poster Prize。"
