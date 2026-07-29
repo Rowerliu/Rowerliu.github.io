@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
 declare global {
@@ -20,7 +20,6 @@ export default function VisitorStats() {
   const locale = useLocaleStore((state) => state.locale);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
-  const [counterLoaded, setCounterLoaded] = useState(false);
   const isChinese = locale.startsWith('zh');
   const copy = isChinese
     ? {
@@ -52,20 +51,23 @@ export default function VisitorStats() {
 
       if (!counter || !container || container.dataset.goatcounterLoaded === 'true') return false;
 
-      container.replaceChildren();
-      container.dataset.goatcounterLoaded = 'true';
-      counter({
-        append: '#goatcounter-total',
-        path: 'TOTAL',
-        no_branding: true,
-        style: `
-          div { border: 0; background: transparent; color: inherit; padding: 0; font: inherit; }
-          #gcvc-for, #gcvc-by { display: none; }
-          #gcvc-views { color: #d4a562; font-size: 1.75rem; font-weight: 700; line-height: 1; }
-        `,
-      });
-      setCounterLoaded(true);
-      return true;
+      try {
+        container.dataset.goatcounterLoaded = 'true';
+        counter({
+          append: '#goatcounter-total',
+          path: 'TOTAL',
+          no_branding: true,
+          style: `
+            div { border: 0; background: transparent; color: inherit; padding: 0; font: inherit; }
+            #gcvc-for, #gcvc-by { display: none; }
+            #gcvc-views { color: #d4a562; font-size: 1.75rem; font-weight: 700; line-height: 1; }
+          `,
+        });
+        return true;
+      } catch {
+        delete container.dataset.goatcounterLoaded;
+        return false;
+      }
     };
 
     if (renderCounter()) return;
@@ -95,9 +97,7 @@ export default function VisitorStats() {
             id="goatcounter-total"
             className="flex h-10 items-center justify-center"
             aria-label={copy.count}
-          >
-            {!counterLoaded && <span className="text-sm text-neutral-400">—</span>}
-          </div>
+          />
           <p className="text-xs text-neutral-600 dark:text-neutral-400">{copy.count}</p>
         </div>
       </div>
