@@ -12,6 +12,7 @@ import type { SiteConfig } from '@/lib/config';
 import { Publication } from '@/types/publication';
 import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import { useMessages } from '@/lib/i18n/useMessages';
 
 interface SectionConfig {
   id: string;
@@ -47,6 +48,7 @@ interface HomePageClientProps {
 
 export default function HomePageClient({ dataByLocale, defaultLocale }: HomePageClientProps) {
   const locale = useLocaleStore((state) => state.locale);
+  const messages = useMessages();
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const data = dataByLocale[locale] || fallback;
 
@@ -62,7 +64,6 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
             author={data.author}
             social={data.social}
             features={data.features}
-            researchInterests={data.researchInterests}
           />
           <VisitorStats />
         </div>
@@ -82,12 +83,27 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                     );
                   case 'publications':
                     return (
-                      <SelectedPublications
-                        key={section.id}
-                        publications={section.publications || []}
-                        title={section.title}
-                        enableOnePageMode={data.enableOnePageMode}
-                      />
+                      <div key={section.id} className="space-y-8">
+                        {data.researchInterests && data.researchInterests.length > 0 && (
+                          <div className="rounded-lg bg-neutral-100 p-5 dark:bg-neutral-800">
+                            <h3 className="mb-3 text-xl font-serif font-bold text-primary">
+                              {messages.profile.researchInterests}
+                            </h3>
+                            <div className="grid gap-2 text-sm text-neutral-700 dark:text-neutral-400 sm:grid-cols-2">
+                              {data.researchInterests.map((interest) => (
+                                <div key={interest} className="rounded-md bg-white/60 px-3 py-2 dark:bg-neutral-700/40">
+                                  {interest}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <SelectedPublications
+                          publications={section.publications || []}
+                          title={section.title}
+                          enableOnePageMode={data.enableOnePageMode}
+                        />
+                      </div>
                     );
                   case 'list':
                     return (

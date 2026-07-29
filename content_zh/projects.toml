@@ -1,6 +1,6 @@
 type = "card"
-title = "Projects"
-description = "Open-source research projects in computational pathology."
+title = "项目"
+description = "开源项目"
 
 [[items]]
 title = "StainExpert"
