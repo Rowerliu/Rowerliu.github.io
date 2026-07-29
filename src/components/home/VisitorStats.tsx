@@ -8,9 +8,9 @@ declare global {
     goatcounter?: {
       visit_count: (options: {
         append: string;
+        type?: 'html' | 'svg' | 'png';
         path: string;
         no_branding: boolean;
-        style: string;
       }) => void;
     };
   }
@@ -19,6 +19,7 @@ declare global {
 export default function VisitorStats() {
   const locale = useLocaleStore((state) => state.locale);
   const mapContainerRef = useRef<HTMLDivElement>(null);
+  const counterSourceRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
   const isChinese = locale.startsWith('zh');
   const copy = isChinese
@@ -47,42 +48,32 @@ export default function VisitorStats() {
   useEffect(() => {
     const renderCounter = () => {
       const counter = window.goatcounter?.visit_count;
-      const container = counterRef.current;
+      const source = counterSourceRef.current;
+      const display = counterRef.current;
 
-      if (!counter || !container || container.dataset.goatcounterLoaded === 'true') return false;
+      if (!counter || !source || !display || source.dataset.goatcounterLoaded === 'true') return false;
 
       try {
-        container.dataset.goatcounterLoaded = 'true';
+        source.dataset.goatcounterLoaded = 'true';
+        const observer = new MutationObserver(() => {
+          const count = source.querySelector('#gcvc-views')?.textContent?.trim();
+          if (!count) return;
+
+          observer.disconnect();
+          display.textContent = count;
+          source.replaceChildren();
+        });
+
+        observer.observe(source, { childList: true, subtree: true });
         counter({
-          append: '#goatcounter-total',
+          append: '#goatcounter-source',
+          type: 'html',
           path: 'TOTAL',
           no_branding: true,
-          style: `
-            div {
-              width: auto;
-              height: auto;
-              overflow: visible;
-              border: 0;
-              background: transparent;
-              color: inherit;
-              padding: 0;
-              font-family: var(--font-sans);
-              line-height: 1;
-            }
-            #gcvc-for, #gcvc-by { display: none; }
-            #gcvc-views {
-              display: block;
-              color: var(--accent);
-              font-family: var(--font-serif);
-              font-size: var(--font-size-2xl);
-              font-weight: 700;
-              line-height: var(--line-height-none);
-            }
-          `,
         });
         return true;
       } catch {
-        delete container.dataset.goatcounterLoaded;
+        delete source.dataset.goatcounterLoaded;
         return false;
       }
     };
@@ -112,8 +103,14 @@ export default function VisitorStats() {
           <div
             ref={counterRef}
             id="goatcounter-total"
-            className="flex h-10 items-center justify-center"
+            className="flex h-10 items-center justify-center text-3xl font-bold leading-none text-accent"
             aria-label={copy.count}
+          />
+          <div
+            ref={counterSourceRef}
+            id="goatcounter-source"
+            className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
+            aria-hidden="true"
           />
           <p className="text-xs text-neutral-600 dark:text-neutral-400">{copy.count}</p>
         </div>
