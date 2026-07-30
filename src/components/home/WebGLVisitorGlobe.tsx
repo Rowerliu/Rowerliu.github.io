@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { GlobeInstance } from 'globe.gl';
 
 const GLOBE_HEIGHT = 250;
+
 // Central visual controls for the WebGL globe.
 const GLOBE_THEME = {
   canvasBackground: '#07111d',
@@ -19,6 +20,22 @@ const GLOBE_THEME = {
   statusTextColor: '#e8d5ae',
   autoRotateSpeed: 0.55,
 } as const;
+
+// // Central visual controls for the WebGL globe (Realistic Natural Theme)
+// const GLOBE_THEME = {
+//   canvasBackground: '#0b192c',       // 深蓝黑色的宇宙/容器背景，衬托蓝色地球
+//   sceneBackground: 'rgba(0,0,0,0)',
+//   earthTexture: '/visitor-globe/earth-blue-marble.jpg', // 换成真实的写实地球纹理
+//   atmosphereColor: '#ffffff',        // 大气层调整为自然的灰白色/淡蓝色光晕
+//   atmosphereAltitude: 0.15,          // 适中的大气层厚度
+//   originPointColor: '#ff4d4f',       // 站点源点（如新加坡）：高亮珊瑚红
+//   visitorPointColor: '#ffec3d',      // 访客点：高亮暖黄（在蓝/绿底色上对比度高）
+//   ringStartColor: 'rgba(255, 236, 61, 0.9)', // 脉冲波纹起始颜色（暖黄）
+//   ringEndColor: 'rgba(255, 236, 61, 0)',    // 脉冲波纹消失颜色
+//   statusBackground: 'rgba(11, 25, 44, 0.75)',// 底部状态栏背景（匹配深蓝底色）
+//   statusTextColor: '#e6f7ff',        // 状态栏文字（淡蓝白）
+//   autoRotateSpeed: 0.55,
+// } as const;
 
 const SITE_ORIGIN: VisitorPoint = {
   lat: 1.29,
