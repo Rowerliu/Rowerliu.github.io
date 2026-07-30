@@ -22,7 +22,8 @@ linkedin = "https://www.linkedin.com/in/zeyu-liu-aaa175333/"
 [features]
 enable_likes = false
 enable_one_page_mode = false
-visitor_widget = "map" # Available values: "map" or "globe"
+visitor_widget = "webgl" # Available values: "map", "globe", or "webgl"
+visitor_globe_api = "https://rowerliu-visitor-api.zeyuliu2015.workers.dev"
 
 [i18n]
 enabled = true

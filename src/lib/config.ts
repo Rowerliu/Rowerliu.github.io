@@ -30,7 +30,8 @@ export interface SiteConfig {
   features: {
     enable_likes: boolean;
     enable_one_page_mode?: boolean;
-    visitor_widget?: 'map' | 'globe';
+    visitor_widget?: 'map' | 'globe' | 'webgl';
+    visitor_globe_api?: string;
   };
   navigation: Array<{
     title: string;

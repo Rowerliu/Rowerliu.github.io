@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import WebGLVisitorGlobe from '@/components/home/WebGLVisitorGlobe';
 
 const GOATCOUNTER_TOTAL_URL = 'https://rowerliu.goatcounter.com/counter/TOTAL.json';
 const VISITOR_MAP_IMAGE_URL =
@@ -10,10 +11,11 @@ const VISITOR_MAP_STATS_URL = 'https://mapmyvisitors.com/web/1c6yt';
 const VISITOR_GLOBE_PAGE_URL = '/widgets/visitor-globe.html';
 
 interface VisitorStatsProps {
-  widget?: 'map' | 'globe';
+  widget?: 'map' | 'globe' | 'webgl';
+  webglApiUrl?: string;
 }
 
-export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
+export default function VisitorStats({ widget = 'map', webglApiUrl }: VisitorStatsProps) {
   const locale = useLocaleStore((state) => state.locale);
   const mapImageRef = useRef<HTMLImageElement>(null);
   const globeFrameRef = useRef<HTMLIFrameElement>(null);
@@ -92,9 +94,27 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
     widgetAttempt === 0 ? VISITOR_MAP_IMAGE_URL : `${VISITOR_MAP_IMAGE_URL}&retry=${widgetAttempt}`;
   const globePageSrc =
     widgetAttempt === 0 ? VISITOR_GLOBE_PAGE_URL : `${VISITOR_GLOBE_PAGE_URL}?retry=${widgetAttempt}`;
-  const widgetLabel = widget === 'globe' ? copy.globe : copy.map;
-  const widgetLoading = widget === 'globe' ? copy.globeLoading : copy.mapLoading;
-  const widgetError = widget === 'globe' ? copy.globeError : copy.mapError;
+  const widgetLabel =
+    widget === 'webgl' ? (isChinese ? '3D 访客地球' : '3D visitor globe') : widget === 'globe' ? copy.globe : copy.map;
+  const widgetLoading =
+    widget === 'webgl'
+      ? isChinese
+        ? '正在加载 3D 访客地球…'
+        : 'Loading 3D visitor globe…'
+      : widget === 'globe'
+        ? copy.globeLoading
+        : copy.mapLoading;
+  const widgetError =
+    widget === 'webgl'
+      ? isChinese
+        ? '3D 访客地球暂时无法加载'
+        : '3D visitor globe is temporarily unavailable'
+      : widget === 'globe'
+        ? copy.globeError
+        : copy.mapError;
+
+  const handleWebGLReady = useCallback(() => setWidgetStatus('ready'), []);
+  const handleWebGLError = useCallback(() => setWidgetStatus('error'), []);
 
   useEffect(() => {
     if (widget !== 'map') return;
@@ -152,6 +172,10 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
     return () => window.clearInterval(timer);
   }, [widget, widgetAttempt]);
 
+  useEffect(() => {
+    if (widget === 'webgl') setWidgetStatus('loading');
+  }, [widget, widgetAttempt]);
+
   return (
     <section className="mx-auto w-full max-w-56" aria-labelledby="visitor-stats-title">
       <h2 id="visitor-stats-title" className="border-l-4 border-accent pl-2 text-base font-semibold text-primary">
@@ -182,7 +206,7 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
         </summary>
         <div
           className={`relative border-t border-neutral-200 p-1.5 dark:border-neutral-700 ${
-            widget === 'globe' ? 'min-h-[262px]' : ''
+            widget === 'globe' || widget === 'webgl' ? 'min-h-[262px]' : ''
           }`}
         >
           {widget === 'map' ? (
@@ -205,7 +229,7 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
                 onError={() => setWidgetStatus('error')}
               />
             </a>
-          ) : (
+          ) : widget === 'globe' ? (
             <>
               <iframe
                 key={widgetAttempt}
@@ -225,6 +249,15 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
                 className="pointer-events-none absolute h-px w-px opacity-0"
               />
             </>
+          ) : (
+            <WebGLVisitorGlobe
+              key={widgetAttempt}
+              apiUrl={webglApiUrl}
+              isChinese={isChinese}
+              attempt={widgetAttempt}
+              onReady={handleWebGLReady}
+              onError={handleWebGLError}
+            />
           )}
           {widgetStatus === 'loading' && (
             <div className="absolute inset-1.5 flex items-center justify-center rounded-md bg-white text-center text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">

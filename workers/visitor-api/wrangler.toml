@@ -1,0 +1,11 @@
+name = "rowerliu-visitor-api"
+main = "src/index.js"
+compatibility_date = "2026-07-30"
+
+[vars]
+ALLOWED_ORIGINS = "https://rowerliu.github.io,http://localhost:3000"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rowerliu-visitors"
+database_id = "3dc727fd-ba77-4ac4-8fdf-3a076d50e9d1"
