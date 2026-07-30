@@ -182,7 +182,7 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
         </summary>
         <div
           className={`relative border-t border-neutral-200 p-1.5 dark:border-neutral-700 ${
-            widget === 'globe' ? 'min-h-[232px]' : 'min-h-[150px]'
+            widget === 'globe' ? 'min-h-[262px]' : ''
           }`}
         >
           {widget === 'map' ? (
@@ -191,14 +191,14 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
               target="_blank"
               rel="noopener noreferrer"
               title={copy.map}
-              className="flex min-h-[138px] items-center justify-center overflow-hidden rounded-md bg-white dark:bg-neutral-800"
+              className="relative block aspect-[180/82] overflow-hidden rounded-md bg-white dark:bg-neutral-800"
             >
               <img
                 key={widgetAttempt}
                 ref={mapImageRef}
                 src={mapImageSrc}
                 alt={copy.map}
-                className={`h-auto w-full object-contain transition-opacity duration-200 ${
+                className={`absolute inset-x-0 top-0 h-auto w-full -translate-y-[26.8%] object-contain transition-opacity duration-200 ${
                   widgetStatus === 'ready' ? 'opacity-100' : 'opacity-0'
                 }`}
                 onLoad={() => setWidgetStatus('ready')}
@@ -206,16 +206,25 @@ export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
               />
             </a>
           ) : (
-            <iframe
-              key={widgetAttempt}
-              ref={globeFrameRef}
-              src={globePageSrc}
-              title={copy.globe}
-              className={`h-[220px] w-full rounded-md border-0 bg-white transition-opacity duration-200 ${
-                widgetStatus === 'ready' ? 'opacity-100' : 'opacity-0'
-              }`}
-              scrolling="no"
-            />
+            <>
+              <iframe
+                key={widgetAttempt}
+                ref={globeFrameRef}
+                src={globePageSrc}
+                title={copy.globe}
+                className={`h-[250px] w-full rounded-md border-0 bg-white transition-opacity duration-200 ${
+                  widgetStatus === 'ready' ? 'opacity-100' : 'opacity-0'
+                }`}
+                scrolling="no"
+              />
+              {/* The legacy Globe endpoint no longer records reliably; reuse the working Map pixel for visit tracking. */}
+              <img
+                src={`${VISITOR_MAP_IMAGE_URL}&display=globe`}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute h-px w-px opacity-0"
+              />
+            </>
           )}
           {widgetStatus === 'loading' && (
             <div className="absolute inset-1.5 flex items-center justify-center rounded-md bg-white text-center text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">

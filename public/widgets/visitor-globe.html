@@ -18,7 +18,7 @@
       #visitor-globe-widget {
         display: flex;
         width: 100%;
-        min-height: 220px;
+        min-height: 250px;
         align-items: flex-start;
         justify-content: center;
       }
@@ -39,14 +39,56 @@
     </div>
     <script>
       (function () {
+        var animationChecked = false;
+
+        function forceAnimationIfNeeded() {
+          if (animationChecked) return;
+
+          var outer = document.querySelector('.mmvst_outer');
+          var front = document.querySelector('.mmvst_map_f');
+          var back = document.querySelector('.mmvst_map_b');
+          var dots = document.querySelector('.mmvst_dots');
+
+          if (!outer || !front || !back || !dots || !front.animate) return;
+
+          animationChecked = true;
+          var startTransform = window.getComputedStyle(front).transform;
+
+          window.setTimeout(function () {
+            if (window.getComputedStyle(front).transform !== startTransform) return;
+
+            var width = outer.getBoundingClientRect().width || 200;
+            var offset = -2.25 * width;
+            var options = {
+              duration: 12000,
+              iterations: Infinity,
+              easing: 'linear'
+            };
+            var forward = [
+              { transform: 'translateX(' + offset + 'px)' },
+              { transform: 'translateX(0px)' }
+            ];
+            var backward = [
+              { transform: 'translateX(0px)' },
+              { transform: 'translateX(' + offset + 'px)' }
+            ];
+
+            front.animate(forward, options);
+            dots.animate(forward, options);
+            back.animate(backward, options);
+          }, 800);
+        }
+
         function revealGlobe() {
           var inner = document.querySelector('.mmvst_inner');
           if (inner) inner.style.display = 'block';
+          forceAnimationIfNeeded();
         }
 
         window.addEventListener('load', revealGlobe);
         window.setTimeout(revealGlobe, 500);
         window.setTimeout(revealGlobe, 1500);
+        window.setTimeout(revealGlobe, 3000);
       })();
     </script>
   </body>

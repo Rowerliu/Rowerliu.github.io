@@ -22,7 +22,7 @@ linkedin = "https://www.linkedin.com/in/zeyu-liu-aaa175333/"
 [features]
 enable_likes = false
 enable_one_page_mode = false
-visitor_widget = "globe" # Available values: "map" or "globe"
+visitor_widget = "map" # Available values: "map" or "globe"
 
 [i18n]
 enabled = true
