@@ -4,35 +4,48 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
 const GOATCOUNTER_TOTAL_URL = 'https://rowerliu.goatcounter.com/counter/TOTAL.json';
-const VISITOR_MAP_URL =
-  'https://mapmyvisitors.com/globe.js?d=XCrzZ4GDJC3bc1IQSsqp_NByILLgLw0-lrOiQsLCcwI';
+const VISITOR_MAP_IMAGE_URL =
+  'https://mapmyvisitors.com/map.png?d=rGHzzxgReS7pAInTceDmf8uE8MtkP1Fk5J-xBNhGGJU&cl=ffffff';
+const VISITOR_MAP_STATS_URL = 'https://mapmyvisitors.com/web/1c6yt';
+const VISITOR_GLOBE_PAGE_URL = '/widgets/visitor-globe.html';
 
-export default function VisitorStats() {
+interface VisitorStatsProps {
+  widget?: 'map' | 'globe';
+}
+
+export default function VisitorStats({ widget = 'map' }: VisitorStatsProps) {
   const locale = useLocaleStore((state) => state.locale);
-  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapImageRef = useRef<HTMLImageElement>(null);
+  const globeFrameRef = useRef<HTMLIFrameElement>(null);
   const [pageViews, setPageViews] = useState<string | null>(null);
   const [counterError, setCounterError] = useState(false);
-  const [mapOpen, setMapOpen] = useState(true);
-  const [mapStatus, setMapStatus] = useState<'loading' | 'ready' | 'error'>('loading');
-  const [mapAttempt, setMapAttempt] = useState(0);
+  const [widgetOpen, setWidgetOpen] = useState(true);
+  const [widgetStatus, setWidgetStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [widgetAttempt, setWidgetAttempt] = useState(0);
   const isChinese = locale.startsWith('zh');
   const copy = isChinese
     ? {
         title: '访客',
         count: '全站访问量',
         map: '全球访客地图',
+        globe: '全球访客地球',
         countError: '暂时无法加载访问量',
         mapLoading: '正在加载访客地图…',
         mapError: '地图暂时无法加载',
+        globeLoading: '正在加载访客地球…',
+        globeError: '访客地球暂时无法加载',
         retry: '重试',
       }
     : {
         title: 'Visitors',
         count: 'Total page view',
         map: 'Global visitor map',
+        globe: 'Global visitor globe',
         countError: 'Page views are temporarily unavailable',
         mapLoading: 'Loading visitor map…',
         mapError: 'Visitor map is temporarily unavailable',
+        globeLoading: 'Loading visitor globe…',
+        globeError: 'Visitor globe is temporarily unavailable',
         retry: 'Retry',
       };
 
@@ -75,50 +88,69 @@ export default function VisitorStats() {
     };
   }, []);
 
+  const mapImageSrc =
+    widgetAttempt === 0 ? VISITOR_MAP_IMAGE_URL : `${VISITOR_MAP_IMAGE_URL}&retry=${widgetAttempt}`;
+  const globePageSrc =
+    widgetAttempt === 0 ? VISITOR_GLOBE_PAGE_URL : `${VISITOR_GLOBE_PAGE_URL}?retry=${widgetAttempt}`;
+  const widgetLabel = widget === 'globe' ? copy.globe : copy.map;
+  const widgetLoading = widget === 'globe' ? copy.globeLoading : copy.mapLoading;
+  const widgetError = widget === 'globe' ? copy.globeError : copy.mapError;
+
   useEffect(() => {
-    if (!mapOpen) return;
+    if (widget !== 'map') return;
 
-    const container = mapContainerRef.current;
-    if (!container) return;
+    const image = mapImageRef.current;
+    if (!image) return;
 
-    setMapStatus('loading');
-    container.replaceChildren();
+    const handleLoad = () => setWidgetStatus('ready');
+    const handleError = () => setWidgetStatus('error');
 
-    const script = document.createElement('script');
-    script.id = 'mmvst_globe';
-    script.src = VISITOR_MAP_URL;
-    script.async = true;
+    setWidgetStatus('loading');
+    if (image.complete) {
+      if (image.naturalWidth > 0) {
+        handleLoad();
+      } else {
+        handleError();
+      }
+      return;
+    }
 
-    const revealMap = () => {
-      const inner = container.querySelector<HTMLElement>('.mmvst_inner');
-      if (inner) inner.style.display = 'block';
-      window.dispatchEvent(new Event('resize'));
-      window.dispatchEvent(new Event('scroll'));
-    };
-
-    const observer = new MutationObserver(() => {
-      if (!container.querySelector('.mmvst_outer')) return;
-      setMapStatus('ready');
-      window.requestAnimationFrame(revealMap);
-    });
-    observer.observe(container, { childList: true, subtree: true });
-
-    script.addEventListener('load', revealMap);
-    script.addEventListener('error', () => setMapStatus('error'));
-    container.appendChild(script);
-
-    const revealTimer = window.setTimeout(revealMap, 750);
-    const timeout = window.setTimeout(() => {
-      if (!container.querySelector('.mmvst_outer')) setMapStatus('error');
-    }, 12_000);
+    image.addEventListener('load', handleLoad);
+    image.addEventListener('error', handleError);
 
     return () => {
-      observer.disconnect();
-      window.clearTimeout(revealTimer);
-      window.clearTimeout(timeout);
-      container.replaceChildren();
+      image.removeEventListener('load', handleLoad);
+      image.removeEventListener('error', handleError);
     };
-  }, [mapAttempt, mapOpen]);
+  }, [widget, widgetAttempt]);
+
+  useEffect(() => {
+    if (widget !== 'globe') return;
+
+    setWidgetStatus('loading');
+    let checks = 0;
+    const timer = window.setInterval(() => {
+      checks += 1;
+
+      try {
+        const globe = globeFrameRef.current?.contentDocument?.querySelector('.mmvst_outer');
+        if (globe) {
+          setWidgetStatus('ready');
+          window.clearInterval(timer);
+          return;
+        }
+      } catch {
+        // The wrapper is same-origin; this guards a transient navigation state.
+      }
+
+      if (checks >= 120) {
+        setWidgetStatus('error');
+        window.clearInterval(timer);
+      }
+    }, 100);
+
+    return () => window.clearInterval(timer);
+  }, [widget, widgetAttempt]);
 
   return (
     <section className="mx-auto w-full max-w-56" aria-labelledby="visitor-stats-title">
@@ -142,26 +174,64 @@ export default function VisitorStats() {
 
       <details
         className="mt-2 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800"
-        open={mapOpen}
-        onToggle={(event) => setMapOpen(event.currentTarget.open)}
+        open={widgetOpen}
+        onToggle={(event) => setWidgetOpen(event.currentTarget.open)}
       >
         <summary className="cursor-pointer px-3 py-2 text-xs font-medium text-primary marker:text-accent">
-          {copy.map}
+          {widgetLabel}
         </summary>
-        <div className="relative min-h-[180px] border-t border-neutral-200 p-1.5 dark:border-neutral-700">
-          <div ref={mapContainerRef} className="min-h-[168px] overflow-hidden rounded-md" />
-          {mapStatus === 'loading' && (
+        <div
+          className={`relative border-t border-neutral-200 p-1.5 dark:border-neutral-700 ${
+            widget === 'globe' ? 'min-h-[232px]' : 'min-h-[150px]'
+          }`}
+        >
+          {widget === 'map' ? (
+            <a
+              href={VISITOR_MAP_STATS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={copy.map}
+              className="flex min-h-[138px] items-center justify-center overflow-hidden rounded-md bg-white dark:bg-neutral-800"
+            >
+              <img
+                key={widgetAttempt}
+                ref={mapImageRef}
+                src={mapImageSrc}
+                alt={copy.map}
+                className={`h-auto w-full object-contain transition-opacity duration-200 ${
+                  widgetStatus === 'ready' ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => setWidgetStatus('ready')}
+                onError={() => setWidgetStatus('error')}
+              />
+            </a>
+          ) : (
+            <iframe
+              key={widgetAttempt}
+              ref={globeFrameRef}
+              src={globePageSrc}
+              title={copy.globe}
+              className={`h-[220px] w-full rounded-md border-0 bg-white transition-opacity duration-200 ${
+                widgetStatus === 'ready' ? 'opacity-100' : 'opacity-0'
+              }`}
+              scrolling="no"
+            />
+          )}
+          {widgetStatus === 'loading' && (
             <div className="absolute inset-1.5 flex items-center justify-center rounded-md bg-white text-center text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
-              {copy.mapLoading}
+              {widgetLoading}
             </div>
           )}
-          {mapStatus === 'error' && (
+          {widgetStatus === 'error' && (
             <div className="absolute inset-1.5 flex flex-col items-center justify-center gap-2 rounded-md bg-white px-3 text-center text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
-              <span>{copy.mapError}</span>
+              <span>{widgetError}</span>
               <button
                 type="button"
                 className="rounded-md bg-accent px-3 py-1 font-medium text-white transition-colors hover:bg-accent-dark"
-                onClick={() => setMapAttempt((attempt) => attempt + 1)}
+                onClick={() => {
+                  setWidgetStatus('loading');
+                  setWidgetAttempt((attempt) => attempt + 1);
+                }}
               >
                 {copy.retry}
               </button>

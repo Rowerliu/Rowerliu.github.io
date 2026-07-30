@@ -66,7 +66,7 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
               social={data.social}
               features={data.features}
             />
-            <VisitorStats />
+            <VisitorStats widget={data.features.visitor_widget} />
           </div>
         </div>
 

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Global visitor globe</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      #visitor-globe-widget {
+        display: flex;
+        width: 100%;
+        min-height: 220px;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .mmvst_outer {
+        margin: 0 auto !important;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="visitor-globe-widget">
+      <script
+        type="text/javascript"
+        id="mmvst_globe"
+        src="https://mapmyvisitors.com/globe.js?d=XCrzZ4GDJC3bc1IQSsqp_NByILLgLw0-lrOiQsLCcwI"
+      ></script>
+    </div>
+    <script>
+      (function () {
+        function revealGlobe() {
+          var inner = document.querySelector('.mmvst_inner');
+          if (inner) inner.style.display = 'block';
+        }
+
+        window.addEventListener('load', revealGlobe);
+        window.setTimeout(revealGlobe, 500);
+        window.setTimeout(revealGlobe, 1500);
+      })();
+    </script>
+  </body>
+</html>
