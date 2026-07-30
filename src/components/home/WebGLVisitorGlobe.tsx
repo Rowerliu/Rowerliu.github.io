@@ -4,6 +4,22 @@ import { useEffect, useRef, useState } from 'react';
 import type { GlobeInstance } from 'globe.gl';
 
 const GLOBE_HEIGHT = 250;
+// Central visual controls for the WebGL globe.
+const GLOBE_THEME = {
+  canvasBackground: '#07111d',
+  sceneBackground: 'rgba(0,0,0,0)',
+  earthTexture: '/visitor-globe/earth-dark.jpg',
+  atmosphereColor: '#d4a85f',
+  atmosphereAltitude: 0.18,
+  originPointColor: '#f2c879',
+  visitorPointColor: '#ffdf9c',
+  ringStartColor: 'rgba(242, 200, 121, 0.9)',
+  ringEndColor: 'rgba(242, 200, 121, 0)',
+  statusBackground: 'rgba(7,17,29,0.7)',
+  statusTextColor: '#e8d5ae',
+  autoRotateSpeed: 0.55,
+} as const;
+
 const SITE_ORIGIN: VisitorPoint = {
   lat: 1.29,
   lng: 103.85,
@@ -95,21 +111,23 @@ export default function WebGLVisitorGlobe({
         })
           .width(width)
           .height(GLOBE_HEIGHT)
-          .backgroundColor('rgba(0,0,0,0)')
-          .globeImageUrl('/visitor-globe/earth-dark.jpg')
+          .backgroundColor(GLOBE_THEME.sceneBackground)
+          .globeImageUrl(GLOBE_THEME.earthTexture)
           .showAtmosphere(true)
-          .atmosphereColor('#d4a85f')
-          .atmosphereAltitude(0.18)
+          .atmosphereColor(GLOBE_THEME.atmosphereColor)
+          .atmosphereAltitude(GLOBE_THEME.atmosphereAltitude)
           .pointLat('lat')
           .pointLng('lng')
           .pointRadius((point) => (point as VisitorPoint).isOrigin ? 0.32 : 0.22)
           .pointAltitude((point) => 0.025 + Math.min(Math.log2((point as VisitorPoint).count + 1) * 0.012, 0.08))
-          .pointColor((point) => (point as VisitorPoint).isOrigin ? '#f2c879' : '#ffdf9c')
+          .pointColor((point) =>
+            (point as VisitorPoint).isOrigin ? GLOBE_THEME.originPointColor : GLOBE_THEME.visitorPointColor,
+          )
           .pointLabel((point) => pointLabel(point as VisitorPoint))
           .pointsTransitionDuration(700)
           .ringLat('lat')
           .ringLng('lng')
-          .ringColor(() => ['rgba(242, 200, 121, 0.9)', 'rgba(242, 200, 121, 0)'])
+          .ringColor(() => [GLOBE_THEME.ringStartColor, GLOBE_THEME.ringEndColor])
           .ringMaxRadius((point) => 2.2 + Math.min(Math.log2((point as VisitorPoint).count + 1), 4))
           .ringPropagationSpeed(1.4)
           .ringRepeatPeriod(reduceMotion ? 0 : 1200)
@@ -119,7 +137,7 @@ export default function WebGLVisitorGlobe({
 
         const controls = globe.controls();
         controls.autoRotate = !reduceMotion;
-        controls.autoRotateSpeed = 0.55;
+        controls.autoRotateSpeed = GLOBE_THEME.autoRotateSpeed;
         controls.enablePan = false;
         controls.enableZoom = false;
 
@@ -200,9 +218,18 @@ export default function WebGLVisitorGlobe({
               : '3D preview · configure the API for live visitor locations';
 
   return (
-    <div className="relative h-[250px] overflow-hidden rounded-md bg-[#07111d]">
+    <div
+      className="relative h-[250px] overflow-hidden rounded-md"
+      style={{ backgroundColor: GLOBE_THEME.canvasBackground }}
+    >
       <div ref={containerRef} className="h-full w-full" aria-hidden="true" />
-      <p className="pointer-events-none absolute inset-x-2 bottom-1.5 rounded bg-[#07111d]/70 px-2 py-1 text-center text-[10px] text-[#e8d5ae] backdrop-blur-sm">
+      <p
+        className="pointer-events-none absolute inset-x-2 bottom-1.5 rounded px-2 py-1 text-center text-[10px] backdrop-blur-sm"
+        style={{
+          backgroundColor: GLOBE_THEME.statusBackground,
+          color: GLOBE_THEME.statusTextColor,
+        }}
+      >
         {status}
       </p>
     </div>
