@@ -27,18 +27,6 @@ target = "projects"
 href = "/projects"
 
 [[navigation]]
-title = "合作"
-type = "page"
-target = "collaborations"
-href = "/collaborations"
-
-[[navigation]]
-title = "获奖"
-type = "page"
-target = "awards"
-href = "/awards"
-
-[[navigation]]
 title = "学术服务"
 type = "page"
 target = "services"

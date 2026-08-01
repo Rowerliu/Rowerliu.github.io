@@ -1,10 +1,26 @@
 type = "card"
 title = "Services"
-description = "Academic reviewing and professional service."
+description = "Academic reviewing, professional service, and selected collaborations."
+
+[[items]]
+title = "PuzzleLogic"
+subtitle = "AI pathology solutions"
+content = "Developing practical AI solutions for digital pathology research, diagnosis, and clinical translation."
+link = "https://puzzlelogic.com/"
+image = "/PuzzleLogic.jpg"
+tags = ["Collaboration", "AI Pathology", "Digital Pathology"]
+
+[[items]]
+title = "Autodemia"
+subtitle = "AI Academic assistants"
+content = "Supporting open academic exchange, research collaboration, and knowledge sharing."
+link = "https://autodemia.com/"
+image = "/Autodemia.jpg"
+tags = ["AI assistant", "Research", "Community"]
 
 [[items]]
 title = "Journal Reviewer"
-subtitle = "Scientific Reports; Biomedical Signal Processing and Control; Computer Methods and Programs in Biomedicine"
+subtitle = "Biomedical Signal Processing and Control; Computer Methods and Programs in Biomedicine; Scientific Reports; BMJ Bioinformatics"
 date = "Ongoing"
 content = "Reviewer for journals in medical imaging, biomedical engineering, and computational biology."
 tags = ["Peer Review", "Journals"]

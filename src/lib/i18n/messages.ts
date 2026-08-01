@@ -40,6 +40,7 @@ export interface LocaleMessages {
     noResults: string;
     abstract: string;
     bibtex: string;
+    link: string;
     code: string;
   };
   footer: {
@@ -89,6 +90,7 @@ const en: LocaleMessages = {
     noResults: 'No publications found matching your criteria.',
     abstract: 'Abstract',
     bibtex: 'BibTeX',
+    link: 'Link',
     code: 'Code',
   },
   footer: {
@@ -138,6 +140,7 @@ const zh: LocaleMessages = {
     noResults: '没有找到符合条件的论文。',
     abstract: '摘要',
     bibtex: 'BibTeX',
+    link: '链接',
     code: '代码',
   },
   footer: {

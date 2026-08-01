@@ -57,18 +57,6 @@ target = "projects"
 href = "/projects"
 
 [[navigation]]
-title = "Collaborations"
-type = "page"
-target = "collaborations"
-href = "/collaborations"
-
-[[navigation]]
-title = "Awards"
-type = "page"
-target = "awards"
-href = "/awards"
-
-[[navigation]]
 title = "Services"
 type = "page"
 target = "services"

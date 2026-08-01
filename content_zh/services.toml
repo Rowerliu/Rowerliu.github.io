@@ -1,6 +1,6 @@
 type = "card"
 title = "学术服务"
-description = "学术审稿与专业服务。"
+description = "学术审稿、专业服务与合作项目。"
 
 [[items]]
 title = "期刊审稿人"
@@ -15,3 +15,19 @@ subtitle = "MICCAI；IEEE BIBM"
 date = "持续进行"
 content = "为医学图像计算、生物信息学和生物医学领域国际会议提供审稿服务。"
 tags = ["同行评审", "会议"]
+
+[[items]]
+title = "PuzzleLogic"
+subtitle = "人工智能病理解决方案"
+content = "面向数字病理研究、诊断与临床转化，开发实用的人工智能解决方案。"
+link = "https://puzzlelogic.com/"
+image = "/PuzzleLogic.jpg"
+tags = ["合作", "人工智能病理", "数字病理"]
+
+[[items]]
+title = "Autodemia"
+subtitle = "学术合作"
+content = "支持开放的学术交流、科研合作与知识分享。"
+link = "https://autodemia.com/?lang=zh"
+image = "/Autodemia.jpg"
+tags = ["合作", "科研合作", "学术社区"]
